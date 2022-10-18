@@ -55,7 +55,7 @@ function App() {
         resetTurn();
       } else {
 
-        resetTurn();
+        setTimeout(() => resetTurn(), 1000);
       }
     }
   }, [choiceOne, choiceTwo])
@@ -79,9 +79,10 @@ function App() {
         {
           cards.map(card => (
             <SingleCard 
-              key={card.id} 
+              key={ card.id } 
               card={ card }
               handleChoice={handleChoice}
+              flipped={ card ===choiceOne || card === choiceTwo || card.matched }
             ></SingleCard>
           ))
         }
