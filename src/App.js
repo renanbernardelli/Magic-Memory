@@ -21,12 +21,13 @@ function App() {
 
 
   //shuffle cards
-
   const shuffleCards = () => {
     const shuffleCards = [...cardImages, ...cardImages]
     .sort(() => Math.random() - 0.5)
     .map((card) => ({ ...card, id: Math.random() }));
 
+    setChoiceOne(null);
+    setChoiceTwo(null);
     setCards(shuffleCards);
     setTurns(0);
   }
@@ -74,6 +75,12 @@ function App() {
     setDisabled(false);
   }
 
+  //start a new game automagically
+  useEffect(() => {
+
+    shuffleCards();
+  }, [])
+
   return (
     <div className="App">
       <h1>Magic Match</h1>
@@ -92,6 +99,7 @@ function App() {
           ))
         }
       </div>
+      <p>Turns: {turns}</p>
     </div>
   );
 }
